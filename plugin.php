@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: WP Kontaktilista
+Plugin Name: WP Contact List Selector
 Plugin URI: http://seravo.fi
 Description: Adds [contacts-list] shortcode and custom post type for handling custom post type
 Version: 1.2.2
@@ -10,8 +10,12 @@ Author URI: http://seravo.fi
 
 include ('lib/wp-cuztom/cuztom.php');
 
+add_action( 'plugins_loaded', 'contact_list_load_textdomain' );
+function contacts_list_load_textdomain() {
+  load_plugin_textdomain( 'cuztom', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' ); 
+}
 
-$contact = new Cuztom_Post_Type( array('Kontakti','Kontaktit') );
+$contact = new Cuztom_Post_Type( array(__('Kontakti'),__('Kontaktit')) );
 //$contact->add_taxonomy( array('Tyyppi','Tyypit')); 
 $contact->add_meta_box(
         'contact_box',
@@ -19,14 +23,14 @@ $contact->add_meta_box(
         array(
             array(
               'name' => 'phone',
-              'label' => 'Puhelin',
-              'description' => 'Yhteyshenkilön puhelinnumero',
+              'label' => __("Puhelin"),
+              'description' => __("Yhteyshenkilön puhelinnumero"),
               'type' => 'text'
               ),
             array(
               'name' => 'name',
-              'label' => 'Nimi',
-              'description' => 'Yhteyshenkilön nimi',
+              'label' => __("Nimi"),
+              'description' => __("Yhteyshenkilön nimi"),
               'type' => 'text'
               ),
             array(
