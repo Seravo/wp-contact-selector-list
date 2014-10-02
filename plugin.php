@@ -12,7 +12,7 @@ include ('lib/wp-cuztom/cuztom.php');
 
 add_action( 'plugins_loaded', 'contact_list_load_textdomain' );
 function contacts_list_load_textdomain() {
-  load_plugin_textdomain( 'cuztom', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' ); 
+  load_plugin_textdomain( 'cuztom', false, plugin_dir_path( __FILE__ ) . 'languages/' ); 
 }
 
 $contact = new Cuztom_Post_Type( array(__('Kontakti'),__('Kontaktit')) );
