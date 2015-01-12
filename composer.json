@@ -1,0 +1,11 @@
+{
+  "name": "seravo/wp-contact-selector-list",
+  "description": "Adds [contacts-list] shortcode and custom post type for handling custom post type",
+  "type": "wordpress-plugin",
+  "authors": [
+    {
+    "name": "Onni Hakala",
+    "email": "onni@seravo.fi"
+    }
+  ]
+}

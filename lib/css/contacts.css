@@ -1,0 +1,22 @@
+/* Don't show random select2 generated elements */
+.contact-list-container .chzn-single {
+    visibility: hidden;
+}
+.contact-list-container .select2-container {
+    min-width: 200px;
+}
+
+/* Style the table */
+.contact-list-container .contact-box {
+    border: 1px solid #b5b5b5;
+    margin: 0px 30px 10px 0px;
+    padding: 0px 20px 20px 20px;
+}
+.contact-list-container .contact-box table {
+    text-align: left;
+    width: 100%;
+    padding-right: 15px;
+}
+.contact-list-container .contact-box table th:after {
+    content: ':';
+}
