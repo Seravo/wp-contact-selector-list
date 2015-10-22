@@ -9,7 +9,7 @@ Author URI: http://seravo.fi
 Text Domain: cuztom
 */
 
-include ('lib/wp-cuztom/cuztom.php');
+include ('lib/cuztom/cuztom.php');
 
 add_action( 'plugins_loaded', 'contacts_list_load_textdomain' );
 function contacts_list_load_textdomain() {
