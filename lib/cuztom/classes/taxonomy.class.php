@@ -35,7 +35,7 @@ class Cuztom_Taxonomy
 	{
 		if( ! empty( $name ) )
 		{
-			$this->post_type = (array) $post_type;
+			$this->post_type = $post_type;
 
 			if( is_array( $name ) )
 			{
@@ -58,29 +58,27 @@ class Cuztom_Taxonomy
 				if ( $is_reserved_term = Cuztom::is_reserved_term( $this->name ) )
 	            	new Cuztom_Notice( $is_reserved_term->get_error_message(), 'error' );
 				else
-					$this->register_taxonomy();
+					add_action( 'init', array( &$this, 'register_taxonomy' ) );
 			}
 			else
 			{
-				$this->register_taxonomy_for_object_type();
+				add_action( 'init', array( &$this, 'register_taxonomy_for_object_type' ) );
 			}
 
 			if( isset( $args['show_admin_column'] ) && $args['show_admin_column'] )
 			{
-				foreach($this->post_type as $post_type) :
-					if( get_bloginfo( 'version' ) < '3.5' ) {
-						add_filter( 'manage_' . $post_type . '_posts_columns', array( &$this, 'add_column' ) );
-						add_action( 'manage_' . $post_type . '_posts_custom_column', array( &$this, 'add_column_content' ), 10, 2 );
-					}
-
-					if( isset( $args['admin_column_sortable'] ) && $args['admin_column_sortable'] ) {
-						add_action( 'manage_edit-' . $post_type . '_sortable_columns', array( &$this, 'add_sortable_column' ), 10, 2 );
-					}
-				endforeach;
-
-				if( isset( $args['admin_column_filter'] ) && $args['admin_column_filter'] )
+				if( get_bloginfo( 'version' ) < '3.5' )
 				{
-					add_action( 'restrict_manage_posts', array( &$this, '_post_filter' ) );
+					add_filter( 'manage_' . $this->post_type . '_posts_columns', array( &$this, 'add_column' ) );
+					add_action( 'manage_' . $this->post_type . '_posts_custom_column', array( &$this, 'add_column_content' ), 10, 2 );
+				}
+
+				if( isset( $args['admin_column_sortable'] ) && $args['admin_column_sortable'] )
+					add_action( 'manage_edit-' . $this->post_type . '_sortable_columns', array( &$this, 'add_sortable_column' ), 10, 2 );
+
+				if( isset( $args['admin_column_filter'] ) && $args['admin_column_filter'] ) 
+				{
+					add_action( 'restrict_manage_posts', array( &$this, '_post_filter' ) ); 
 					add_filter( 'parse_query', array( &$this, '_post_filter_query') );
 				}
 			}
@@ -153,9 +151,9 @@ class Cuztom_Taxonomy
 	 * @since 	2.5
 	 *
 	 */
-	function add_term_meta( $data = array(), $locations = array( 'add_form', 'edit_form' ) )
+	function add_term_meta( $data = array() )
 	{
-		$meta = new Cuztom_Term_Meta( $this->name, $data, $locations );
+		$term_meta = new Cuztom_Term_Meta( $this->name, $data );
 
 		return $this;
 	}
@@ -229,7 +227,7 @@ class Cuztom_Taxonomy
 	{
 		global $typenow, $wp_query;
 
-		if( in_array( $typenow, $this->post_type ) )
+		if( $typenow == $this->post_type ) 
 		{
 			wp_dropdown_categories( array(
 				'show_option_all'	=> sprintf( __( 'Show all %s', 'cuztom' ), $this->plural ),

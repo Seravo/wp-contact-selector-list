@@ -1,39 +1,39 @@
-## Cuztom
+## Cuztom Helper
 
 This helper can be used to quickly register Custom Post Types, Taxonomies, Meta Boxes, Menu Pages and Sidebars within your Wordpress projects. Please comment, review, watch, fork and report bugs.
 
-**Version:** 2.9.17
+**Version:** 2.9.12  
 **Requires:** 3.5 / 3.0+
 
 ## Basic usage
 
 Include the main file.
-
+	
 	include( 'cuztom/cuztom.php' );
-
+   
 ### Add Custom Post Types
-
+	
 	$book = register_cuztom_post_type( 'Book' );
 
 **Note:** If you're using Custom Post Types, don't forget to *[flush rewrite rules on activation](http://codex.wordpress.org/Function_Reference/register_post_type#Flushing_Rewrite_on_Activation "Flushing Rewrite Rules on Activation")*.
 
 ### Add Custom Taxonomies
-
+	
 To add Custom Taxonomies to the newly created Post Type, simply call this method.
 
 	$book->add_taxonomy( 'Author' );
-
+			
 You can also call this as a seperate class like this. The second parameter is the Post Type name.
 
 	$taxonomy = register_cuztom_taxonomy( 'Author', 'book' );
 
 ### Add Meta Boxes
-
+	
 Add Meta Boxes.
 
-	$book->add_meta_box(
+	$book->add_meta_box( 
 		'meta_box_id',
-		'Book Info',
+		'Book Info', 
 		array(
 			array(
 				'name' 			=> 'author',
@@ -43,12 +43,12 @@ Add Meta Boxes.
 			)
 		)
 	);
-
+	
 Meta Boxes can be added with their own class too. The second parameter is the Post Type name.
 
-	$box = add_cuztom_meta_box(
+	$box = add_cuztom_meta_box(  
 		'meta_box_id',
-		'Book Info',
+		'Book Info', 
 		'book',
 		array(
 			'name' 			=> 'author',
@@ -57,7 +57,7 @@ Meta Boxes can be added with their own class too. The second parameter is the Po
 			'type'			=> 'text'
 		)
 	)
-
+	
 ### Add Sidebars
 
 To register a sidebar, just call this.
@@ -67,30 +67,12 @@ To register a sidebar, just call this.
 		'id'				=> 'sidebar_twee',
 		'description'		=> 'Build with an array',
 	) );
-
+	
 ## Advanced usage
 See the <a href="https://github.com/gizburdt/wp-cuztom/wiki">wiki</a> for the full and advanced guides.
 
 ## Changelog
 You can see the full changelog <a href="https://github.com/gizburdt/wp-cuztom/wiki/Changelog">here</a>.
-
-###2.9.17
-* Fixed #337: Undefined file name
-
-###2.9.16
-* Fixed #334: Array to string conversion warning (fix taxonomy post filter)
-
-###2.9.15
-* Fixed: Show admin column for radios showed "Array" as value
-* Fixed #321: Saving fields without slashes (using wp_unslash). props @vitornogueira
-
-###2.9.14
-* Improvement: Remove add_action('init', '*') form the code. Now use your own wrapper function and add_action.
-
-###2.9.13
-* Fixed #305: Term meta location fix
-* Fixed #307: Conflicting tab ID
-* Fixed #308: Yes/No, checkbox, checkboxes styling fixes
 
 ###2.9.12
 * Improvement: #303: Remove wpautop from Cuztom WYSIWYG Field
@@ -116,7 +98,7 @@ You can see the full changelog <a href="https://github.com/gizburdt/wp-cuztom/wi
 
 ###2.9.5
 * Fixed: Bug in tab class with repeatable fields
-* Improvement: Added the possibilty to set css classes for field, when building
+* Improvement: Added the possibilty to set css classes for field, when building 
 
 ###2.9.4
 * Fixed: Fixes jquery-ui url to work with http and https. props @sebmaynard

@@ -17,7 +17,6 @@ class Cuztom_Field_File extends Cuztom_Field
 		{
 			$attachment = self::get_attachment_by_url( $value );
 			$mime = '';
-            $name = '';
 
 			if( is_object( $attachment ) )
 			{
