@@ -3,7 +3,7 @@
 Plugin Name: WP Contact List Selector
 Plugin URI: http://seravo.fi
 Description: Adds [contacts-list] shortcode and custom post type for handling custom post type
-Version: 1.2.2
+Version: 1.2.3
 Author: Seravo Oy / Onni Hakala
 Author URI: http://seravo.fi
 Text Domain: cuztom
